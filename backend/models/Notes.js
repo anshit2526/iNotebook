@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Creating a schema for notes. Schema provides structure for our database for in which way the datae will be stored in databse.
 const NotesSchema = new Schema({
     title: {
         type: String,
