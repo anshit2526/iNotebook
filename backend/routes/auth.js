@@ -8,6 +8,7 @@ const fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = 'Thismustbe@secrettoken!'
 
+
 // Route 1: Creating a User using POST: "api/auth/createuser". No login required
 router.post('/createuser', [
     // all the validators will come here
@@ -16,7 +17,7 @@ router.post('/createuser', [
     body('password', 'Password must be atleast 5 characters long.').isLength({ min: 5 }),
 ], async (req, res) => {
 
-    // If there are errors, than return Bad request and error
+    // If there are validation errors, than return Bad request and the error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ erros: errors.array() });
@@ -75,13 +76,13 @@ router.post('/login', [
     try {
         let user = await User.findOne({ email });
         if (!user) {
-            res.status(400).json({ error: 'Please login with correct credentials' });
+            return res.status(400).json({ error: 'Please login with correct credentials' });
         }
 
         const passwordCompare = await bcrypt.compare(password, user.password);
 
         if (!passwordCompare) {
-            res.status(400).json({ error: 'Please login with correct credentials' });
+            return res.status(400).json({ error: 'Please login with correct credentials' });
         }
 
         const data = {
