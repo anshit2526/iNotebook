@@ -9,6 +9,9 @@ const port = 5000
 app.use(express.json());
 
 // Available Routes 
+app.get('/', (req, res) => {
+  res.status(200).send('<h1 style="text-align:center;font-family:JetBrains Mono;">Server is running successfully</h1>')
+})
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
