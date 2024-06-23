@@ -12,6 +12,7 @@ export const Notes = () => {
         <>
 
             <AddNote />
+            
             <div className='row'>
                 <h2 className='text-center my-3'>Your Notes</h2>
                 {notes.map((note) => {
