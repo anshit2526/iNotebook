@@ -1,10 +1,14 @@
 const connectToMongo = require('./db');
 const express = require('express');
+const cors = require('cors')
+
 
 connectToMongo();
 const app = express()
 const port = 5000
 
+
+app.use(cors())
 // A middleware to use req.body in this project. This is used to deal with json like sending requests in json.  
 app.use(express.json());
 
