@@ -9,7 +9,7 @@ export const AddNote = () => {
 
     const handleAddNote = (event) => {
         event.preventDefault();
-        addNote(note.title, note.description);
+        addNote(note.title, note.description, note.tag);
     }
 
     const onInput = (event) => {
@@ -21,12 +21,16 @@ export const AddNote = () => {
             <h2 className='text-center my-3'>Add Notes</h2>
             <form>
                 <div className="mb-3">
-                    <label htmlFor="title" className="form-label">Note Title</label>
+                    <label htmlFor="title" className="form-label">Title</label>
                     <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" onInput={onInput} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="description" className="form-label">Note Description</label>
+                    <label htmlFor="description" className="form-label">Description</label>
                     <input type="text" className="form-control" id="description" name="description" onInput={onInput} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="tag" className="form-label">Tag</label>
+                    <input type="text" className="form-control" id="tag" name="tag" onInput={onInput} />
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleAddNote}>Add Note</button>
             </form>

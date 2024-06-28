@@ -51,10 +51,10 @@ const NoteState = (props) => {
     }
 
     // Edit Note
-    const handleEditNote = async (id, title, description, tag) => {
+    const editNote = async (id, title, description, tag) => {
 
         //TODO: API Call
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+        const response = await fetch(`${host}/api/notes/editenote/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,15 +79,25 @@ const NoteState = (props) => {
     }
 
     // Delete Note
-    const handleDeleteNote = (id) => {
+    const deleteNote = async (id) => {
         // TODO: API Call
+        const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2NjEyZThlNDRhMWVmMWJmYWJhMTAyIn0sImlhdCI6MTcxNzk2NTYwNX0.9rb82Jxfha5HQhhUDLh7t7ZS-VXiqF3RxvpMm1I_M5w"
+            },
+        });
+        const json = response.json();
+        console.log(json)
+
         const newNotes = notes.filter((note) => { return note._id !== id });
         setNotes(newNotes);
     }
 
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, handleEditNote, handleDeleteNote, getNotes }}>
+        <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, getNotes }}>
             {props.children}
         </NoteContext.Provider>
     )
