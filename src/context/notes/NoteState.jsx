@@ -8,8 +8,8 @@ const NoteState = (props) => {
     const [notes, setNotes] = useState(notesInitial);
 
 
-     // Get all Notes
-     const getNotes = async () => {
+    // Get all Notes
+    const getNotes = async () => {
 
         // TODO: API Call
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -20,8 +20,6 @@ const NoteState = (props) => {
             }
         });
         const json = await response.json();
-
-        console.log(json)
         setNotes(json)
     }
 
@@ -36,11 +34,12 @@ const NoteState = (props) => {
                 "Content-Type": "application/json",
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2NjEyZThlNDRhMWVmMWJmYWJhMTAyIn0sImlhdCI6MTcxNzk2NTYwNX0.9rb82Jxfha5HQhhUDLh7t7ZS-VXiqF3RxvpMm1I_M5w"
             },
-            body: JSON.stringify({title, description, tag}),
+            body: JSON.stringify({ title, description, tag }),
         });
+
+        // eslint-disable-next-line
         const json = response.json();
 
-        console.log('Adding a note')
         const note = {
             "user": "666612e8e44a1ef1bfaba102",
             "title": title,
@@ -54,28 +53,31 @@ const NoteState = (props) => {
     const editNote = async (id, title, description, tag) => {
 
         //TODO: API Call
-        const response = await fetch(`${host}/api/notes/editenote/${id}`, {
-            method: "POST",
+        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2NjEyZThlNDRhMWVmMWJmYWJhMTAyIn0sImlhdCI6MTcxNzk2NTYwNX0.9rb82Jxfha5HQhhUDLh7t7ZS-VXiqF3RxvpMm1I_M5w"
             },
-            body: JSON.stringify({title, description, tag}),
+            body: JSON.stringify({ title, description, tag }),
         });
 
+        // eslint-disable-next-line
         const json = response.json();
 
 
         //Logic to edit in client
-        console.log("Editing your note");
-        for (let index = 0; index < notes.length; index++) {
-            const element = notes[index];
+        let newNotes = JSON.parse(JSON.stringify(notes));
+        for (let index = 0; index < newNotes.length; index++) {
+            const element = newNotes[index];
             if (element._id === id) {
-                element.title = title;
-                element.description = description;
-                element.tag = tag;
+                newNotes[index].title = title;
+                newNotes[index].description = description;
+                newNotes[index].tag = tag;
+                break;
             }
         }
+        setNotes(newNotes)
     }
 
     // Delete Note
@@ -89,7 +91,6 @@ const NoteState = (props) => {
             },
         });
         const json = response.json();
-        console.log(json)
 
         const newNotes = notes.filter((note) => { return note._id !== id });
         setNotes(newNotes);
