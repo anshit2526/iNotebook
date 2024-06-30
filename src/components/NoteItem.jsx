@@ -9,7 +9,14 @@ const NoteItem = (props) => {
         <div className='col-md-4'>
             <div className="card my-2">
                 <div className="card-body">
-                    <h5 className="card-title">{note.title}</h5>
+                    <div className="d-flex align-items-baseline justify-content-between">
+                        <h5 className="card-title flex-fill">{note.title}</h5>
+                        <div className="" style={{ fontSize: '0.85rem' }}>
+                            <i className="fa-solid fa-tag" style={{ cursor: 'default' }}></i>
+                            <span className='fw-medium mx-1'>{note.tag}</span>
+
+                        </div>
+                    </div>
                     <p className="card-text">{note.description}</p>
                     <i className="fa-regular fa-pen-to-square mx-2" onClick={() => { updateNote(note) }}></i>
                     <i className="fa-regular fa-trash-can mx-2" onClick={() => { deleteNote(note._id) }}></i>

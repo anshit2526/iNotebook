@@ -14,14 +14,14 @@ export const Notes = () => {
 
     const refModal = useRef(null);
     const refClose = useRef(null);
-    const [note, setNote] = useState({id: "", updatedTitle: "", updatedDescription: "", updatedTag: ""});
+    const [note, setNote] = useState({ id: "", updatedTitle: "", updatedDescription: "", updatedTag: "" });
 
     const updateNote = (currentNote) => {
         refModal.current.click();
         setNote({
             id: currentNote._id,
-            updatedTitle: currentNote.title, 
-            updatedDescription: currentNote.description, 
+            updatedTitle: currentNote.title,
+            updatedDescription: currentNote.description,
             updatedTag: currentNote.tag
         });
     }
@@ -70,7 +70,7 @@ export const Notes = () => {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleUpdateNote}>Update note</button>
+                            <button type="button" className="btn btn-primary" onClick={handleUpdateNote} disabled={note.title < 3 || note.description < 5}>Update note</button>
                         </div>
                     </div>
                 </div>
@@ -78,6 +78,9 @@ export const Notes = () => {
 
             <div className='row'>
                 <h2 className='text-center my-3'>Your Notes</h2>
+                <div className="container">
+                    {notes.length === 0 && 'No notes to display'}
+                </div>
                 {notes.map((note) => {
                     return <NoteItem key={note._id} updateNote={updateNote} note={note} />
                 })}

@@ -38,14 +38,7 @@ const NoteState = (props) => {
         });
 
         // eslint-disable-next-line
-        const json = response.json();
-
-        const note = {
-            "user": "666612e8e44a1ef1bfaba102",
-            "title": title,
-            "description": description,
-            "tag": tag,
-        };
+        const note = await response.json();
         setNotes(notes.concat(note))
     }
 
