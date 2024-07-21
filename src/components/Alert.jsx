@@ -11,10 +11,12 @@ function Alert(props) {
 
 
     return (
-        <div style={{ height: '50px', width: '350px', textAlign: 'center', margin: 'auto' }}>
-            {props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
-                <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}
-            </div>}
+        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ position: 'fixed', height: '50px', width: '350px', textAlign: 'center', marginInline: 'auto' }}>
+                {props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+                    <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}
+                </div>}
+            </div>
         </div>
     )
 }

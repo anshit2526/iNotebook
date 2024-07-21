@@ -83,6 +83,7 @@ const NoteState = (props) => {
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2NjEyZThlNDRhMWVmMWJmYWJhMTAyIn0sImlhdCI6MTcxNzk2NTYwNX0.9rb82Jxfha5HQhhUDLh7t7ZS-VXiqF3RxvpMm1I_M5w"
             },
         });
+        //eslint-disable-next-line
         const json = response.json();
 
         const newNotes = notes.filter((note) => { return note._id !== id });

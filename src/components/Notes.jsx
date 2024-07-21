@@ -30,7 +30,7 @@ export const Notes = (props) => {
     const handleUpdateNote = (event) => {
         editNote(note.id, note.updatedTitle, note.updatedDescription, note.updatedTag)
         refClose.current.click();
-        props.showAlert('Note updated', 'success');
+        props.showAlert('Note updated successfully', 'success');
     }
 
     const onInput = (event) => {

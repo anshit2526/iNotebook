@@ -23,7 +23,7 @@ const NoteItem = (props) => {
 
                     <p className="card-text">{note.description}</p>
                     <i className="fa-regular fa-pen-to-square mx-2" onClick={() => { updateNote(note) }}></i>
-                    <i className="fa-regular fa-trash-can mx-2" onClick={() => { deleteNote(note._id); props.showAlert('Note Deleted', 'success'); }}></i>
+                    <i className="fa-regular fa-trash-can mx-2" onClick={() => { deleteNote(note._id); props.showAlert('Note deleted successfully', 'success'); }}></i>
 
                 </div>
             </div>

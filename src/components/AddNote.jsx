@@ -11,7 +11,7 @@ export const AddNote = (props) => {
         event.preventDefault();
         addNote(note.title, note.description, note.tag);
         setNote({ title: "", description: "", tag: "" });
-        props.showAlert('Note Added', 'success');
+        props.showAlert('Note added successfully', 'success');
     }
 
     const onInput = (event) => {

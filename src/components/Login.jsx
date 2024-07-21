@@ -21,7 +21,7 @@ export const Login = (props) => {
             // Save the auth token and then rediect
             localStorage.setItem('token', json.authtoken);
             navigate('/');
-            props.showAlert('Login successfull', 'success')
+            props.showAlert('Login successfully', 'success')
         } else {
             props.showAlert('Invalid Credentials', 'danger');
         }
