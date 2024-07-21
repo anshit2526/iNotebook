@@ -34,6 +34,7 @@ export const Signup = (props) => {
 
   return (
     <div className="container">
+      <h2>Login to use iNotebook</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
